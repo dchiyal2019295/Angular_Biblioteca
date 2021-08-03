@@ -1,0 +1,32 @@
+ <!-- Navbar content -->
+ <div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-dark p-4">
+    <div class="d-flex" *ngIf="_usuarioService.obtenerIdentidad()">
+
+      <img *ngIf="_usuarioService.obtenerIdentidad().imagen" [src]="_usuarioService.obtenerIdentidad().imagen" class="user-image">
+      <img *ngIf="_usuarioService.obtenerIdentidad().imagen === null" src="../../../assets/perfil.png" class="user-image"> 
+  
+     <a  class="nav-link text-light">{{ _usuarioService.obtenerIdentidad().username}}</a>
+   </div>
+    <h5 class="text-white h4">
+      <a class="nav-link" routerLink='/login' routerLinkActive='active'>Login</a>
+    </h5>
+    <h5 class="text-white h4">
+      <a class="nav-link" routerLink='/usuarios' routerLinkActive='active'>Usuarios</a>
+    </h5>
+    <h5 class="text-white h4">
+      <a class="nav-link" routerLink='/buscador' routerLinkActive='active'>Buscar</a>
+    </h5>
+    <h5 class="text-white h4">
+      <a class="nav-link" routerLink='/categoria' routerLinkActive='active'>Categoria</a>
+    </h5>
+  </div>
+   
+</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>

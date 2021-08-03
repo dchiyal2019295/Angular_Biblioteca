@@ -1,0 +1,163 @@
+<body class="body">
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="d-grid gap-2 d-md-block">
+        <br>
+        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarCategoria">
+          <i class="bi bi-plus-square">Agregar Categoria</i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4" *ngFor="let catego of categoList">
+      <div class="card mb-3">
+        <div class="card-header">
+          {{ catego.nombre }}
+            <button style="float: right" type="button" class="btn btn-light btn-sm" id="dropdownSettings"
+            data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <img src="https://www.aulacreactiva.com/wp-content/uploads/2014/06/20-mapas-mentales-610x270.jpg" alt="Imagen Muestra" width="200" height="100">
+              <p class="card-text">{{ catego.nombre }}</p>
+              <div class="btn-group" role="group" aria-label="Basic example">
+              <button  class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalVerCategoria" (click)="obtenerCategoriasID(catego._id)">Ver</button>
+              <button  class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria" (click)="obtenerCategoriasID(catego._id)">Editar</button>
+              <button  class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalEliminarCategoria" (click)="obtenerCategoriasID(catego._id)">Eliminar</button>
+              <button  class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarImagen">Agregar Imagen</button>
+            </div>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal agregar Categoria-->
+  <div class="modal fade" id="modalAgregarCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Categoria</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputNombre" class="form-label">Nombre Categoria</label>
+              <input type="text" class="form-control" id="inputNombre" >
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          (click)="agregarCategoria()">Agregar Categoria</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal editar Categoria-->
+
+  <div class="modal fade" id="modalEditarCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Categoria</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputNombre" class="form-label">Nombre Categoria</label>
+              <input type="text" class="form-control" id="inputNombre" >
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          (click)="editarCategoria()">Editar Categoria</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal ver Categoria-->
+
+  <div class="modal fade" id="modalVerCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Categoria</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputNombre" class="form-label">Nombre Categoria</label>
+              <input type="text" class="form-control" id="inputNombre" >
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Eliminar Categoria -->
+<div class="modal fade" id="modalEliminarCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Categoria</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de eliminar la Categoria: {{ categoriaIDModel.nombre }}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+        (click)="eliminarCategoria(categoriaIDModel._id)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal Agregar Imagen -->
+  <div class="modal fade" id="modalAgregarImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Imagen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Subir Imagen
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" type="button"><input type="file"
+            name="Imagen a subir"></button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+
